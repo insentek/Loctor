@@ -1,6 +1,5 @@
 <script setup lang='ts'>
-import type { DataTableColumns } from 'naive-ui'
-import { computed, h, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { NButton, NDivider, NInput, NModal, NSpace, NTabPane, NTabs, useMessage } from 'naive-ui'
 import { usePromptStore } from '@/store'
 import { useBasicLayout } from '@/hooks/useBasicLayout'
@@ -35,7 +34,6 @@ const show = computed({
 const showModal = ref(false)
 
 const importLoading = ref(false)
-const exportLoading = ref(false)
 
 const searchValue = ref<string>('')
 
@@ -126,13 +124,6 @@ const modifyPromptTemplate = () => {
   promptList.value = [{ key: tempPromptKey.value, value: tempPromptValue.value }, ...tempList] as never
   message.success(t('common.editSuccess'))
   changeShowModal('modify')
-}
-
-const deletePromptTemplate = (row: { key: string; value: string }) => {
-  promptList.value = [
-    ...promptList.value.filter((item: { key: string; value: string }) => item.key !== row.key),
-  ] as never
-  message.success(t('common.deleteSuccess'))
 }
 const importPromptTemplate = () => {
   try {
@@ -229,53 +220,6 @@ computed(() => {
     pageSize, pageSlot,
   }
 })
-// table相关
-const createColumns = (): DataTableColumns<DataProps> => {
-  return [
-    {
-      title: t('store.title'),
-      key: 'renderKey',
-    },
-    {
-      title: t('store.description'),
-      key: 'renderValue',
-    },
-    {
-      title: t('common.action'),
-      key: 'actions',
-      width: 100,
-      align: 'center',
-      render(row) {
-        return h('div', { class: 'flex items-center flex-col gap-2' }, {
-          default: () => [h(
-            NButton,
-            {
-              tertiary: true,
-              size: 'small',
-              type: 'info',
-              onClick: () => changeShowModal('modify', row),
-            },
-            { default: () => t('common.edit') },
-          ),
-          h(
-            NButton,
-            {
-              tertiary: true,
-              size: 'small',
-              type: 'error',
-              onClick: () => deletePromptTemplate(row),
-            },
-            { default: () => t('common.delete') },
-          ),
-          ],
-        })
-      },
-    },
-  ]
-}
-
-const columns = createColumns()
-
 watch(
   () => promptList,
   () => {
