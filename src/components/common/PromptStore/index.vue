@@ -328,7 +328,7 @@ const dataSource = computed(() => {
   <NModal v-model:show="show" style="width: 90%; max-width: 900px;" preset="card">
     <div class="space-y-4">
       <NTabs type="segment">
-        <NTabPane name="local" :tab="$t('store.local')">
+<!--        <NTabPane name="local" :tab="$t('store.local')">
           <div
             class="flex gap-3 mb-4"
             :class="[isMobile ? 'flex-col' : 'flex-row justify-between']"
@@ -390,7 +390,7 @@ const dataSource = computed(() => {
               </template>
             </NListItem>
           </NList>
-        </NTabPane>
+        </NTabPane>-->
         <NTabPane name="download" :tab="$t('store.online')">
           <p class="mb-4">
             {{ $t('store.onlineImportWarning') }}
@@ -408,7 +408,7 @@ const dataSource = computed(() => {
             </NButton>
           </div>
           <NDivider />
-          <NLayoutContent
+<!--          <NLayoutContent
             style="height: 360px"
             content-style="background: none;"
             :native-scrollbar="false"
@@ -442,7 +442,7 @@ const dataSource = computed(() => {
                 </div>
               </template>
             </NCard>
-          </NLayoutContent>
+          </NLayoutContent>-->
         </NTabPane>
       </NTabs>
     </div>

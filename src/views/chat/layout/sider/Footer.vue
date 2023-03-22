@@ -8,7 +8,8 @@ const show = ref(false)
 </script>
 
 <template>
-  <footer class="flex items-center justify-between min-w-0 p-4 overflow-hidden border-t dark:border-neutral-800">
+	<!--底部用户头配置框-->
+<!--  <footer class="flex items-center justify-between min-w-0 p-4 overflow-hidden border-t dark:border-neutral-800">
     <div class="flex-1 flex-shrink-0 overflow-hidden">
       <UserAvatar />
     </div>
@@ -20,5 +21,5 @@ const show = ref(false)
     </HoverButton>
 
     <Setting v-if="show" v-model:visible="show" />
-  </footer>
+  </footer>-->
 </template>
